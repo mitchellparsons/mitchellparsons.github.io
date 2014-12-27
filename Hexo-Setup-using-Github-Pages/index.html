@@ -1,0 +1,55 @@
+<p>If you did not know <a href="https://pages.GitHub.com/" target="_blank" rel="external">GitHub pages</a> allows static website hosting for free! And free I can do. In digging through the GitHub pages walkthrough a bit more I learned about <a href="http://jekyllrb.com/" target="_blank" rel="external">Jekyll</a> which is a static website generator written in Ruby. It looks pretty amazing, but more recently I have been bent on JavasScript. <a href="http://hexo.io" target="_blank" rel="external">Hexo</a>! Hexo is another fantastic static website generator, but this one is powered by Node! With Hexo you can scaffold out posts, add layouts, generate the static files, then deploy, using node and command line, to your GitHub repo.</p>
+<p>So, Hexo will generate static website and then will deploy those files to a GitHub repo which will serve it to the public. One thing I need in a blogging engine is the ability to write posts from any one of my computers, anywhere. Well, this is simple! Because we are dealing with a git repository already we can use another for the config/original posts markdown files! In fact, we can use the same repo that we are deploying to, but a different branch.</p>
+<p>Thus my git strategy is <em>master</em> branch for deployed static files, and I made a new <em>hexo</em> branch where I initialized my hexo project and I make my config changes or layouts changes or anything of the sort.</p>
+<h2 id="GitHub_Setup">GitHub Setup</h2>
+<p>You can host your pages on GitHub by creating a special repository named <strong>yourusername.github.io</strong>. In my case I named mine <a href="https://GitHub.com/mitchellparsons/mitchellparsons.GitHub.io" target="_blank" rel="external">mitchellparsons.github.io</a>. Just add an <em>index.html</em> to <em>master</em> and GitHub Pages will serve it.</p>
+<ol>
+<li><p>Create github repo. Login to github.com and just create a new repo following the naming convention I just talked about. OR I highly reccomend following github pages <a href="https://pages.github.com/" target="_blank" rel="external">guide</a>.</p>
+</li>
+<li><p>After you create your github repo go ahead and clone it locally. I try to use terminal for most of these things, but there are some good git gui clients out there.</p>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>git clone yourrepo</div><div class="line"><span class="variable">$ </span>cd yourrepo</div></pre></td></tr></table></figure>
+
+<ol>
+<li>Branch hexo configuration branch</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>git branch hexo</div><div class="line"><span class="variable">$ </span>git checkout hexo</div></pre></td></tr></table></figure>
+
+<p>or shorthand for doing a branch and checkout at once</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>git checkout -b hexo</div></pre></td></tr></table></figure>
+
+<h2 id="Hexo_Setup">Hexo Setup</h2>
+<ol>
+<li>Install hexo with npm</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>npm install -g hexo</div></pre></td></tr></table></figure>
+
+<ol>
+<li>In your recently cloned repo directory (and <em>hexo</em> branch) lets initialize a new project</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo init .</div></pre></td></tr></table></figure>
+
+<ol>
+<li>Test it out locally</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div><div class="line">[info] Hexo <span class="keyword">is</span> running at http:<span class="comment">//localhost:4000/. Press Ctrl+C to stop.</span></div></pre></td></tr></table></figure>
+
+<p>if successful you should be able to navigate to <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a></p>
+<ol>
+<li>Setup <em>_config</em> file for deployment<br>What we have is default vanilla. Hexo can be configured for deployment to github in the the <em>_config.yml</em> file. This is the <a href="http://www.yaml.org/" target="_blank" rel="external">yaml</a> config file for your website. I will leave it up to the reader to learn more about these options here. But, lets look at the deployment section of <em>_config.yml</em>. Add your github repo and make it look something like the following</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor"># Deployment</span></div><div class="line"><span class="preprocessor">## Docs: http://hexo.io/docs/deployment.html</span></div><div class="line"><span class="label">deploy:</span></div><div class="line"><span class="label">type:</span> github</div><div class="line"><span class="label">repo:</span> https://github.com/YOURNAME/YOURNAME.github.io.git</div><div class="line"><span class="label">branch:</span> master</div><div class="line"><span class="label">message:</span> <span class="string">"Hexo Deploy Blog."</span></div></pre></td></tr></table></figure>
+
+<ol>
+<li>Deploy</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>hexo deploy</div></pre></td></tr></table></figure>
+
+<p>Awesome! Go to <em>yourname.github.io</em> and see your new website!<br>*note that it may take a few for changes to show up.</p>
+<ol>
+<li>Version control your hexo project<br>Now that you have hexo setup and are deploying lets go ahead and commit and push the changes to github.</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>git add --all</div><div class="line"><span class="variable">$ </span>git commit -m <span class="string">"whatever yo"</span></div><div class="line"><span class="variable">$ </span>git push</div></pre></td></tr></table></figure>
+
+<p>Now all of the configuration changes, layout changes, original and unfinished posts are in your github repo hexo branch.</p>
