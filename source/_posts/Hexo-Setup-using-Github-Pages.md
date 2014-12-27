@@ -7,9 +7,9 @@ tags:
 - hexo
 ---
 
-If you did not know [GitHub pages](https://pages.GitHub.com/) allows static website hosting for free! And free I can do. In digging through the GitHub pages walkthrough a bit more I learned about [Jekyll](http://jekyllrb.com/) which is a static website generator. It is written in Ruby and looks pretty amazing. But more recently I have been bent on JavasScript and Node. [Hexo](http://hexo.io)! Hexo is another fantastic static website generator, but this one is powered by Node! With Hexo you can scaffold out posts, add layouts, generate the static html + css, then deploy, using node and command line, to your GitHub repo.
+If you did not know [GitHub pages](https://pages.GitHub.com/) allows static website hosting for free! And free I can do. In digging through the GitHub pages walkthrough a bit more I learned about [Jekyll](http://jekyllrb.com/) which is a static website generator written in Ruby. It looks pretty amazing, but more recently I have been bent on JavasScript. [Hexo](http://hexo.io)! Hexo is another fantastic static website generator, but this one is powered by Node! With Hexo you can scaffold out posts, add layouts, generate the static files, then deploy, using node and command line, to your GitHub repo.
 
-So, Hexo will generate static website and then will deploy those files to a GitHub repo which will serve it to the public. One necessity I have in doing a blog is to be able to write posts from any computer anywhere. Well this is simple, lets keep any config and source of posts in a git repo! In fact, we can use the same repo that we are deploying to, but a different branch.
+So, Hexo will generate static website and then will deploy those files to a GitHub repo which will serve it to the public. One thing I need in a blogging engine is the ability to write posts from any one of my computers, anywhere. Well, this is simple! Because we are dealing with a git repository already we can use another for the config/original posts markdown files! In fact, we can use the same repo that we are deploying to, but a different branch.
 
 Thus my git strategy is _master_ branch for deployed static files, and I made a new _hexo_ branch where I initialized my hexo project and I make my config changes or layouts changes or anything of the sort.
 
@@ -19,12 +19,12 @@ You can host your pages on GitHub by creating a special repository named **youru
 
 1. Create github repo. Login to github.com and just create a new repo following the naming convention I just talked about. OR I highly reccomend following github pages [guide](https://pages.github.com/).
 
-2. After you created your github repo clone it locally. I try to use terminal for most of these things, but feel free to use a UI if that works for you.
+2. After you create your github repo go ahead and clone it locally. I try to use terminal for most of these things, but there are some good git gui clients out there.
 
 ```shell
 $ git clone yourrepo
+$ cd yourrepo
 ```
-then navigate to your newly cloned repo.
 
 3. Branch hexo configuration branch
 ```shell
@@ -55,8 +55,8 @@ $ hexo server
 ```
 if successful you should be able to navigate to http://localhost:4000/
 
-4. Setting up __config.yml_ for deployment
-What we have is default vanilla. Hexo deployment to github can be setup in the the __config.yml_. This is the [yaml](http://www.yaml.org/) config file for your website. I will leave it up to the reader to learn more about these options here. But, lets look at the deployment section of __config.yml_. Add your github repo and make it look something like the following
+4. Setup _\_config_ file for deployment
+What we have is default vanilla. Hexo can be configured for deployment to github in the the _\_config.yml_ file. This is the [yaml](http://www.yaml.org/) config file for your website. I will leave it up to the reader to learn more about these options here. But, lets look at the deployment section of __config.yml_. Add your github repo and make it look something like the following
 
 ```yaml
 # Deployment
@@ -73,11 +73,14 @@ message: "Hexo Deploy Blog."
 $ hexo deploy
 ```
 
-Simple, right. Go to yourname.github.io and see your newly created and freely hosted website! *note that it may take a few for changes to show up.
+Awesome! Go to _yourname.github.io_ and see your new website!
+*note that it may take a few for changes to show up.
 
-6. Version control your hexo
+6. Version control your hexo project
 Now that you have hexo setup and are deploying lets go ahead and commit and push the changes to github.
 ```shell
 $ git add --all
 $ git commit -m "whatever yo"
+$ git push
 ```
+Now all of the configuration changes, layout changes, original and unfinished posts are in your github repo hexo branch.
