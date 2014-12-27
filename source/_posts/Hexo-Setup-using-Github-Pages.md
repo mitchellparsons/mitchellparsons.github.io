@@ -81,6 +81,6 @@ Now that you have hexo setup and are deploying lets go ahead and commit and push
 ```shell
 $ git add --all
 $ git commit -m "whatever yo"
-$ git push
+$ git push origin hexo
 ```
 Now all of the configuration changes, layout changes, original and unfinished posts are in your github repo hexo branch.
