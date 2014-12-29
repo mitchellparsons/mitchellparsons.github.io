@@ -7,7 +7,7 @@ tags:
 - hexo
 ---
 
-If you did not know [GitHub pages](https://pages.GitHub.com/) allows static website hosting for free! And free I can do. In digging through the GitHub pages walkthrough a bit more I learned about [Jekyll](http://jekyllrb.com/) which is a static website generator written in Ruby. It looks pretty amazing, but more recently I have been bent on JavasScript. [Hexo](http://hexo.io)! Hexo is another fantastic static website generator, but this one is powered by Node! With Hexo you can scaffold out posts, add layouts, generate the static files, then deploy, using node and command line, to your GitHub repo.
+If you did not know [GitHub pages](https://pages.GitHub.com/) allows static website hosting for free! And free I can do. In digging through the GitHub pages walkthrough a bit more I learned about [Jekyll](http://jekyllrb.com/) which is a static website generator written in Ruby. It looks pretty amazing, but more recently I have been bent on JavasScript. [Hexo](http://hexo.io)! Hexo is another fantastic static website generator, but this one is powered by Node! With Hexo you can scaffold out posts, add layouts, generate static files and then deploy using node and command line to your GitHub repo.
 
 So, Hexo will generate static website and then will deploy those files to a GitHub repo which will serve it to the public. One thing I need in a blogging engine is the ability to write posts from any one of my computers, anywhere. Well, this is simple! Because we are dealing with a git repository already we can use another for the config/original posts markdown files! In fact, we can use the same repo that we are deploying to, but a different branch.
 
